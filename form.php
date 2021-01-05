@@ -15,35 +15,36 @@
 </head>
 <body>
 
-<h1 class="text-center">Inscription</h1>
+<h1 class="text-center">Inscription CAF</h1>
 
-
+<div class="container">
   <form action="" method = "POST" class="p-5 text-center align-content-center">
   <div class="row">
-      <div class="form-inline col-md-4">
+      <div class="form-inline col-md-6">
         <label for="inputName">Nom</label>
-        <input type="text" class="form-control" name="inputName" pattern="^[A-Za-z-éèêëàâäôöûüç'. ]+$" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Votre nom">
-        <?= $error['inputName'] ?? ''; ?>
+        <input type="text" class="form-control" name="inputName" pattern="^[A-Za-z-éèêëàâäôöûüùç'. ]+$" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Votre nom">
+        <p class="text-danger"><?= $error['inputName'] ?? ''; ?></p>
       </div>
 
-      <div class="form-inline col-md-4">
+      <div class="form-inline col-md-6">
         <label for="inputFirstName">Prénom</label>
-        <input type="text" class="form-control" name="inputFirstName" pattern="[A-Za-z-éèêëàâäôöûüç'. ]*" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Votre prénom">
-        <?= $error['inputFirstName'] ?? ''; ?>
+        <input type="text" class="form-control" name="inputFirstName" pattern="[A-Za-z-éèêëàâäôöûüùç'. ]*" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Votre prénom">
+        <p class="text-danger"><?= $error['inputFirstName'] ?? ''; ?></p>
       </div>
       </div>
       
         
       <div class="row">
-      <div class="form-inline col-md-2">
+      <div class="form-inline col-md-4">
         <label for="inputDateOfBirth">Votre date de naissance</label>
-        <input type="text" class="form-control" name="inputDateOfBirth" pattern="([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="01/01/1994">
+        <input type="text" class="form-control" name="inputDateOfBirth" pattern="([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}" title ="Le champs doit être remplit sous le format JJ/MM/AAAA" placeholder="01/01/1994">
+        <p class="text-danger"><?= $error['inputDateOfBirth'] ?? ''; ?></p>
       </div> 
       
-      <!-- 
-      <div class="form-group col-md-3">
+       
+      <!-- <div class="form-group col-md-4">
         <label for="inputState">Pays de naissance</label>
-        <select name="inputState" class="form-control">
+        <select name="inputState"  pattern="([A-Za-z éèêëàâäôöûüç.-])+" title ="Le champs ne doit comporter que des lettres et des espaces" class="form-control">
           <option selected>Choose...</option>
           <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
@@ -290,41 +291,56 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
         </select>
-      </div>
-      <div class="form-group col-md-3">
-        <label for="inputNationality">Nationalité</label>
-        <input type="text" class="form-control" name="inputNationality"  pattern="([A-Z][a-z.-])+" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Française">
-      </div>
-      </div>
-      <div class="row">
+      </div> -->
+      
       <div class="form-group col-md-4">
-        <label for="inputAddress">Adresse</label>
-        <input type="text" class="form-control" name="inputAddress"  pattern="([0-9]{1,6}([A-Z][a-z.- ])+" title ="Le champs ne doit comporter que des lettres, des chiffres et des espaces">
+        <label for="inputNationality">Nationalité</label>
+        <input type="text" class="form-control" name="inputNationality"  pattern="([A-Za-z éèêëàâäôöûüç.-])+" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Française">
+        <p class="text-danger"><?= $error['inputNationality'] ?? ''; ?></p>
       </div>
-      <div class="form-group col-md-1">
+      </div>
+      
+      <div class="row">
+      <div class="form-group col-md-5">
+        <label for="inputAddress">Adresse</label>
+        <input type="text" class="form-control" name="inputAddress"  pattern="[0-9]{1,6}[A-Za-z .,-]+" title ="Le champs ne doit comporter que des lettres, des chiffres et des espaces">
+        <p class="text-danger"><?= $error['inputAddress'] ?? ''; ?></p>
+      </div>
+     
+      <div class="form-group col-md-3">
         <label for="inputZip">Code postal</label>
         <input type="text" class="form-control" name="inputZip"  pattern="\d{5}" title ="Le champs ne doit comporter que des chiffres">
+        <p class="text-danger"><?= $error['inputZip'] ?? ''; ?></p>
       </div>
-      <div class="form-group col-md-3">
+       
+      <div class="form-group col-md-4">
         <label for="inputCity">Ville</label>
-        <input type="text" class="form-control" name="inputCity"  pattern="([A-Z][a-z.-])+" title ="Le champs ne doit comporter que des lettres">
+        <input type="text" class="form-control" name="inputCity"  pattern="([A-Za-z éèêëàâäôöûüç .-])+" title ="Le champs ne doit comporter que des lettres">
+        <p class="text-danger"><?= $error['inputCity'] ?? ''; ?></p>
       </div>
       </div>
+      
       <div class="row">
-      <div class="form-group col-md-2">
+      <div class="form-group col-md-3">
         <label for="inputPhone">Téléphone</label>
         <input type="text" class="form-control" name="inputPhone" pattern="[0-9]{10}" title ="Le champs ne doit comporter que des chiffres">
+        <p class="text-danger"><?= $error['inputPhone'] ?? ''; ?></p>
       </div>
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-5">
         <label for="inputEmail">Email</label>
-        <input type="email" class="form-control" name="inputEmail" pattern="(a-z0-9.@_-])+@[a-z0-9-_]+\.[a-z]{2,6}" title ="Le champs peut comporter uniquement des lettres, chiffres, . , - , _ , et @ " placeholder="jojo@hotmail.fr">
+        <input type="email" class="form-control" name="inputEmail" pattern="([a-z0-9.@_-])+@[a-z0-9-_]+\.[a-z]{2,6}" title ="Le champs peut comporter uniquement des lettres, chiffres, . , - , _ , et @ " placeholder="jojo@hotmail.fr">
+        <p class="text-danger"><?= $error['inputEmail'] ?? ''; ?></p>
       </div>
-      <div class="form-group col-md-3">
+      
+      <div class="form-group col-md-4">
           <label for="inputIDPoleEmploi">Numéro Pôle Emploi</label>
-          <input type="text" class="form-control" name="inputIDPoleEmploi" pattern="[0-9]{8,12}[A-Z]{2}" title ="Le champs ne doit comporter que des lettres">
+          <input type="text" class="form-control" maxlength="14" name="inputIDPoleEmploi" pattern="[0-9]{8,12}[A-Z]{2}" title ="Le champs ne doit comporter que des lettres">
+          <p class="text-danger"><?= $error['inputIDPoleEmploi'] ?? ''; ?></p>
         </div>
         </div>
+        
       <div class="row">
+        <!-- 
         <div class="form-group col-md-4">
           <label for="inputDiplome">Diplôme</label>
           <select name="inputDiplome" class="form-control">
@@ -333,14 +349,15 @@
             <option>Bac +2</option>
             <option>Bac +3 ou suprérieur</option>
           </select>
-        </div>
+        </div> -->
         
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-2">
           <label for="inputBadge">Nombre de badge</label>
-          <input type="text" class="form-control" name="inputBadge" pattern="[0-9]{0,3}" title ="Le champs ne doit comporter que des lettres">
+          <input type="text" maxlength="3" class="form-control" name="inputBadge" pattern="[0-9]{0,2}|[1]?[0-9]{2}" title ="Entre 0 et 199">
+          <p class="text-danger"><?= $error['inputBadge'] ?? ''; ?></p>
         </div>
         </div>
-        
+        <!--
         <div class="form-group col-md-8">
           <label for="inputSuperHero">Si vous étiez un super heros/une super heroïne, qui seriez-vous et pourquoi ? </label>
           <input type="text" class="form-control" name="inputSuperHero" pattern="([A-Za-z.- ])+" title ="Le champs ne doit comporter que des lettres">
@@ -357,9 +374,9 @@
       </div> -->
 
 
-      <button type="submit" class="btn btn-primary d-flex">Envoyer</button>
+      <button type="submit" class="btn btn-primary ">Envoyer</button>
   </form>
-
+</div>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
     integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous">

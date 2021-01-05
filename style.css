@@ -1,0 +1,21 @@
+html, body{
+    margin: 0;
+    background-color: rgb(240, 199, 146);
+}
+
+input::invalid {
+    border : 2px dashed red;
+}
+
+input::valid {
+    border : 2px solid  green;
+}
+
+input {
+    padding: 4%;
+}
+label {
+    font-weight: bold;
+}
+
+
