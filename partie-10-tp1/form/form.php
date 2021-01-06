@@ -29,7 +29,7 @@
 
       <div class="form-group col-md-4">
         <label for="inputState">Pays de naissance</label>
-        <select name="inputState"  pattern="([A-Za-z éèêëàâäôöûüç.-])+" title ="Le champs ne doit comporter que des lettres et des espaces" class="form-control">
+        <select name="inputState"  pattern="([A-Z][a-zéèêëàâäôöûüç-])*" title ="Le champs ne doit comporter que des lettres et des espaces" class="form-control">
           <option selected>Choose...</option>
           <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
@@ -329,7 +329,7 @@
         
         <div class="form-group col-md-4">
           <label for="inputDiplome">Diplôme</label>
-          <select name="inputDiplome" pattern="[A-Za-z2-3 +]+" class="form-control">
+          <select name="inputDiplome" pattern="([A-Z][a-zéèêëàâäôöûüç-])*" class="form-control">
             <option selected>Sans</option>
             <option>Bac</option>
             <option>Bac +2</option>
@@ -358,7 +358,7 @@
         </div>
 
         <div class="form-group col-md-12">
-          <label for="inputHack">Racontez-nous un de vos "hacks" (pas forcément technique ou informatique)</label>
+          <label for="inputHack">Racontez-nous un de vos "hacks" (pas forcément technique ou informatique</label>
           <textarea type="text" rows="6" class="form-control" value="<?= isset($_POST['inputHack']) ? $_POST['inputHack'] : '' ?>" name="inputHack"></textarea>
           <p class="text-danger"><?= $error['inputHack'] ?? ''; ?></p>
         </div>

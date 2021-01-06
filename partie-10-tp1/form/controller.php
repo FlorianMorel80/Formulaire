@@ -68,9 +68,9 @@ include('form/regexp.php');
         } else { 
           $inputState = test_input($_POST["inputState"]);
           $inputState = filter_var($inputState, FILTER_SANITIZE_STRING); 
-            if (!preg_match("$regexpState",$inputState)) {
-              $error ['inputState'] = "*Seules les lettres sont autorisées";
-            }
+            // if (!preg_match("$regexpState",$inputState)) {
+            //   $error['inputState'] = "*Seules les lettres sont autorisées";
+            // }
           } 
         } else {
           $error['inputState'] = '*Problème lors de l\'envoi du formulaire';  
@@ -194,10 +194,10 @@ include('form/regexp.php');
         $error['inputDiplome'] = "*Champs requis";
           } else { 
           $inputDiplome = test_input($_POST["inputDiplome"]);
-          $inputDiplome = filter_var($inputIDPoleEmploi, FILTER_SANITIZE_STRING);
-            if (!preg_match("$regexpDiplome",$inputDiplome)) {
-            $error['inputDiplome'] = "Seuls les lettres et les chiffres sont autorisées";
-            }
+          $inputDiplome = filter_var($inputDiplome, FILTER_SANITIZE_STRING);
+            // if (!preg_match("$regexpDiplome",$inputDiplome)) {
+            // $error['inputDiplome'] = "Seuls les lettres et les chiffres sont autorisées";
+            // }
           } 
       } else {
         $error['inputDiplome'] = '*Problème lors de l\'envoi du formulaire';  
