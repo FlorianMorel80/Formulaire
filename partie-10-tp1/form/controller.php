@@ -146,7 +146,9 @@ include('form/regexp.php');
         $error['inputEmail'] = "*Champs requis";
         } else {
         $inputEmail = test_input($_POST["inputEmail"]);
-        $inputEmail = filter_var($inputEmail, FILTER_VALIDATE_EMAIL); 
+        if(!filter_var($inputEmail, FILTER_VALIDATE_EMAIL)){
+
+        }
         $inputEmail = filter_var($inputEmail, FILTER_SANITIZE_EMAIL);
           }
         } else {
