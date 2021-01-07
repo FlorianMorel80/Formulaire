@@ -1,6 +1,7 @@
 
-<h1 class="text-center text-light pt-2">VotreplusbeauFormulaire.com</h1>
-<h2 class="text-center text-light pt-2"> Vous aussi créez le formulaire de vos rêves</h2>
+<div class="main">
+<h1 class="titleForm text-center  pt-2" id="glitch" data-text="VotreplusbeauFormulaire.com">VotreplusbeauFormulaire.com</h1></div>
+<h2 class="titleForm text-center  pt-2"> Vous aussi créez le formulaire de vos rêves</h2>
 
 
   <form action="" method = "POST" class="p-5 text-center align-content-center">
@@ -22,7 +23,7 @@
       <div class="row">
       <div class="form-inline col-md-4">
         <label for="inputDateOfBirth">Votre date de naissance</label>
-        <input type="text" class="form-control" value="<?= isset($_POST['inputDateOfBirth']) ? $_POST['inputDateOfBirth'] : '' ?>" name="inputDateOfBirth" pattern="([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}" title ="Le champs doit être remplit sous le format JJ/MM/AAAA" placeholder="01/01/1994">
+        <input type="date" class="form-control" value="<?= isset($_POST['inputDateOfBirth']) ? $_POST['inputDateOfBirth'] : '' ?>" name="inputDateOfBirth" pattern="([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}" minlength="10" maxlength="10" title ="Le champs doit être remplit sous le format JJ/MM/AAAA" placeholder="01/01/1994">
         <p class="text-danger"><?= $error['inputDateOfBirth'] ?? ''; ?></p>
       </div> 
       
@@ -320,7 +321,7 @@
       
       <div class="form-group col-md-4">
           <label for="inputIDPoleEmploi">Numéro Pôle Emploi</label>
-          <input type="text" class="form-control" maxlength="14" value="<?= isset($_POST['inputIDPoleEmploi']) ? $_POST['inputIDPoleEmploi'] : '' ?>" name="inputIDPoleEmploi" pattern="[0-9]{8,12}[A-Z]{2}" title ="Le champs ne doit comporter que des lettres">
+          <input type="text" class="form-control" maxlength="8" value="<?= isset($_POST['inputIDPoleEmploi']) ? $_POST['inputIDPoleEmploi'] : '' ?>" name="inputIDPoleEmploi" pattern="[0-9]{7}[A-Z]{1}" title ="Le champs ne doit comporter que des lettres">
           <p class="text-danger"><?= $error['inputIDPoleEmploi'] ?? ''; ?></p>
         </div>
         </div>
@@ -339,7 +340,7 @@
         </div>
         
         <div class="form-group col-md-2">
-          <label for="inputBadge">Nombre de badge</label>
+          <label for="inputBadge">Badge(s)</label>
           <input type="text" maxlength="3" class="form-control" value="<?= isset($_POST['inputBadge']) ? $_POST['inputBadge'] : '' ?>" name="inputBadge" pattern="[0-9]{0,2}|[1]?[0-9]{2}" title ="Entre 0 et 199">
           <p class="text-danger"><?= $error['inputBadge'] ?? ''; ?></p>
         </div>
@@ -367,12 +368,8 @@
             remplir ce formulaire ?</label>
           <textarea type="text" rows="6" class="form-control" value="<?= isset($_POST['inputXP']) ? $_POST['inputXP'] : '' ?>" name="inputXP"></textarea>
           <p class="text-danger"><?= $error['inputXP'] ?? ''; ?></p>
-          
         </div>
 
 
       <button type="submit" class="btn btn-primary ">Envoyer</button>
   </form>
-
-
-

@@ -17,7 +17,7 @@ include('form/regexp.php');
           $inputName = filter_var($inputName, FILTER_SANITIZE_STRING);
 
           // Verifier : Si le champs ne correspond pas à la REGEX
-          if (!preg_match("$regexpName",$inputName)) {
+          if (!preg_match($regexpName,$inputName)) {
               $error['inputName'] = '*Seuls les lettres et les espaces sont autorisés';
           } 
       }
@@ -48,13 +48,11 @@ include('form/regexp.php');
       $inputDateOfBirth = $_POST['inputDateOfBirth'];
         if (empty($inputDateOfBirth)) {
           $error['inputDateOfBirth'] = '*Champs requis';
-      } else {
-        $inputDateOfBirth = test_input($_POST["inputDateOfBirth"]);
-        $inputDateOfBirth = filter_var($inputDateOfBirth, FILTER_SANITIZE_STRING); 
-        
-          if (!preg_match("$regexpDateOfBirth", $inputDateOfBirth)) {
-            $error['inputDateOfBirth'] = "*Seuls les chiffres sont autorisés";
-          }
+        } else {
+          $inputDateOfBirth = test_input($_POST["inputDateOfBirth"]);
+          $inputDateOfBirth = filter_var($inputDateOfBirth, FILTER_SANITIZE_STRING); 
+          $timestamp = strtotime($inputDateOfBirth);
+          $inputDateOfBirth = date('d-m-Y', $timestamp);
         }
       } else {
         $error['inputDateOfBirth'] = '*Problème lors de l\'envoi du formulaire';  

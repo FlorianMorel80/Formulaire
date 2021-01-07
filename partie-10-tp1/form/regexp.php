@@ -10,9 +10,8 @@ $regexpZIP = "/^(([0-8][0-9])|(9[0-5]))[0-9]{3}$/";
 $regexpCity = "/^([A-Za-z éèêëàâäôöûüç .-])+$/";
 $regexpEmail = "/^[A-Za-z0-9.@_!#$%&’`*?^+{|}~-]+@[a-z0-9]+\.[a-z]{2,6}$/";
 $regexpPhone = "/^[0-9]{10}$/";
-$regexpIDPoleEmploi = "/^[0-9]{8,12}[A-Z]{2}$/";
+$regexpIDPoleEmploi = "/^[0-9]{7}[A-Z]{1}$/";
 $regexpDiplome = "/^([A-Z][a-zéèêëàâäôöûüç-])*$/";
 $regexpBadge = "/^[0-9]{0,2}|[1]?[0-9]{2}$/";
-$regexpState = "/^[A-Za-z-éèêëàâäôöûüç]$/";
 
 ?>
