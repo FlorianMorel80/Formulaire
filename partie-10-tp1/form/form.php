@@ -8,13 +8,13 @@
   <div class="row">
       <div class="form-inline col-md-6">
         <label for="inputName">Nom</label>
-        <input type="text" class="form-control" value="<?= isset($_POST['inputName']) ? $_POST['inputName'] : '' ?>" name="inputName" pattern="[A-Za-z-éèêëàâäôöûüùç'. ]+" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Votre nom">
+        <input type="text" class="form-control" value="<?= isset($_POST['inputName']) ? $_POST['inputName'] : '' ?>" name="inputName" pattern="[A-Za-z-éèêëàâäôöûüùç'. ]+" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Votre nom" require>
         <p class="text-danger"><?= $error['inputName'] ?? ''; ?></p>
       </div>
 
       <div class="form-inline col-md-6">
         <label for="inputFirstName">Prénom</label>
-        <input type="text" class="form-control" value="<?= isset($_POST['inputFirstName']) ? $_POST['inputFirstName'] : '' ?>" name="inputFirstName" pattern="[A-Za-z-éèêëàâäôöûüùç'. ]*" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Votre prénom">
+        <input type="text" class="form-control" value="<?= isset($_POST['inputFirstName']) ? $_POST['inputFirstName'] : '' ?>" name="inputFirstName" pattern="[A-Za-z-éèêëàâäôöûüùç'. ]*" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Votre prénom" require>
         <p class="text-danger"><?= $error['inputFirstName'] ?? ''; ?></p>
       </div>
       </div>
@@ -23,15 +23,15 @@
       <div class="row">
       <div class="form-inline col-md-4">
         <label for="inputDateOfBirth">Votre date de naissance</label>
-        <input type="date" class="form-control" value="<?= isset($_POST['inputDateOfBirth']) ? $_POST['inputDateOfBirth'] : '' ?>" name="inputDateOfBirth" pattern="([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}" minlength="10" maxlength="10" title ="Le champs doit être remplit sous le format JJ/MM/AAAA" placeholder="01/01/1994">
+        <input type="date" class="form-control" value="<?= isset($_POST['inputDateOfBirth']) ? $_POST['inputDateOfBirth'] : '' ?>" name="inputDateOfBirth" pattern="([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}" minlength="8" maxlength="8" title ="Le champs doit être remplit sous le format JJ/MM/AAAA" placeholder="01/01/1994" require>
         <p class="text-danger"><?= $error['inputDateOfBirth'] ?? ''; ?></p>
       </div> 
       
 
       <div class="form-group col-md-4">
         <label for="inputState">Pays de naissance</label>
-        <select name="inputState"  pattern="([A-Z][a-zéèêëàâäôöûüç-])*" title ="Le champs ne doit comporter que des lettres et des espaces" class="form-control">
-          <option selected>Choose...</option>
+        <select name="inputState" class="form-control" require>
+          <option selected></option>
           <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -282,7 +282,7 @@
       
       <div class="form-group col-md-4">
         <label for="inputNationality">Nationalité</label>
-        <input type="text" class="form-control" value="<?= isset($_POST['inputNationality']) ? $_POST['inputNationality'] : '' ?>" name="inputNationality"  pattern="([A-Za-z éèêëàâäôöûüç.-])+" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Française">
+        <input type="text" class="form-control" value="<?= isset($_POST['inputNationality']) ? $_POST['inputNationality'] : '' ?>" name="inputNationality"  pattern="([A-Za-z éèêëàâäôöûüç.-])+" title ="Le champs ne doit comporter que des lettres et des espaces" placeholder="Française" require>
         <p class="text-danger"><?= $error['inputNationality'] ?? ''; ?></p>
       </div>
       </div>
@@ -290,19 +290,19 @@
       <div class="row">
       <div class="form-group col-md-5">
         <label for="inputAddress">Adresse</label>
-        <input type="text" class="form-control" value="<?= isset($_POST['inputAddress']) ? $_POST['inputAddress'] : '' ?>" name="inputAddress"  pattern="[0-9]{1,6}[A-Za-z .,-]+" title ="Le champs ne doit comporter que des lettres, des chiffres et des espaces">
+        <input type="text" class="form-control" value="<?= isset($_POST['inputAddress']) ? $_POST['inputAddress'] : '' ?>" name="inputAddress"  pattern="[0-9]{1,6}[A-Za-z0-9-éèêëàâäôöûüç .,-]+" title ="Le champs ne doit comporter que des lettres, des chiffres et des espaces" require>
         <p class="text-danger"><?= $error['inputAddress'] ?? ''; ?></p>
       </div>
 
       <div class="form-group col-md-3">
         <label for="inputZip">Code postal</label>
-        <input type="text" class="form-control" value="<?= isset($_POST['inputZip']) ? $_POST['inputZip'] : '' ?>" name="inputZip"  pattern="\d{5}" title ="Le champs ne doit comporter que des chiffres">
+        <input type="text" maxlength="5" pattern="(([0-8][0-9])|(9[0-5]))[0-9]{3}" title="Ne doit contenir que des chiffres" class="form-control" value="<?= isset($_POST['inputZip']) ? $_POST['inputZip'] : '' ?>" name="inputZip" require>
         <p class="text-danger"><?= $error['inputZip'] ?? ''; ?></p>
       </div>
 
       <div class="form-group col-md-4">
         <label for="inputCity">Ville</label>
-        <input type="text" class="form-control" value="<?= isset($_POST['inputCity']) ? $_POST['inputCity'] : '' ?>" name="inputCity"  pattern="([A-Za-z éèêëàâäôöûüç .-])+" title ="Le champs ne doit comporter que des lettres">
+        <input type="text" class="form-control" value="<?= isset($_POST['inputCity']) ? $_POST['inputCity'] : '' ?>" name="inputCity"  pattern="([A-Za-z éèêëàâäôöûüç .-])+" title ="Le champs ne doit comporter que des lettres" require>
         <p class="text-danger"><?= $error['inputCity'] ?? ''; ?></p>
       </div>
       </div>
@@ -310,7 +310,7 @@
       <div class="row">
       <div class="form-group col-md-3">
         <label for="inputPhone">Téléphone</label>
-        <input type="text" class="form-control" value="<?= isset($_POST['inputPhone']) ? $_POST['inputPhone'] : '' ?>" name="inputPhone" pattern="[0-9]{10}" title ="Le champs ne doit comporter que des chiffres">
+        <input type="text" class="form-control" maxlength="15" value="<?= isset($_POST['inputPhone']) ? $_POST['inputPhone'] : '' ?>" name="inputPhone" pattern="(\+[0-9]{1,3}[0-9]{8,12})|[0-9]{8,15}" title ="Le champs ne doit comporter que des chiffres" require>
         <p class="text-danger"><?= $error['inputPhone'] ?? ''; ?></p>
       </div>
       <div class="form-group col-md-5">
@@ -331,7 +331,8 @@
         <div class="form-group col-md-4">
           <label for="inputDiplome">Diplôme</label>
           <select name="inputDiplome" pattern="([A-Z][a-zéèêëàâäôöûüç-])*" class="form-control">
-            <option selected>Sans</option>
+            <option selected></option>
+            <option>Sans</option>
             <option>Bac</option>
             <option>Bac +2</option>
             <option>Bac +3 ou suprérieur</option>

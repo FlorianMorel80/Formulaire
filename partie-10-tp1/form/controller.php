@@ -13,7 +13,7 @@ include('form/regexp.php');
       } else {
 
           // Si il n'est pas vide, alors je nettoie la variable 
-          $inputName = test_input($_POST["inputName"]);
+          $inputName = test_input($inputName);
           $inputName = filter_var($inputName, FILTER_SANITIZE_STRING);
 
           // Verifier : Si le champs ne correspond pas à la REGEX
@@ -32,10 +32,10 @@ include('form/regexp.php');
         $error['inputFirstName'] = '*Champs requis';
       } else {
         // Si il n'est pas vide, alors je nettoie la variable 
-        $inputFirstName = test_input($_POST["inputFirstName"]);
+        $inputFirstName = test_input($inputFirstName);
         $inputFirstName = filter_var($inputFirstName, FILTER_SANITIZE_STRING);
         // Verifier : Si le champs ne correspond pas à la REGEX
-        if (!preg_match("$regexpFirstName",$inputFirstName)) {
+        if (!preg_match($regexpFirstName,$inputFirstName)) {
             $error['inputFirstName'] = '*Seuls les lettres et les espaces sont autorisés';
         } 
     }
@@ -49,7 +49,7 @@ include('form/regexp.php');
         if (empty($inputDateOfBirth)) {
           $error['inputDateOfBirth'] = '*Champs requis';
         } else {
-          $inputDateOfBirth = test_input($_POST["inputDateOfBirth"]);
+          $inputDateOfBirth = test_input($inputDateOfBirth);
           $inputDateOfBirth = filter_var($inputDateOfBirth, FILTER_SANITIZE_STRING); 
           $timestamp = strtotime($inputDateOfBirth);
           $inputDateOfBirth = date('d-m-Y', $timestamp);
@@ -61,12 +61,12 @@ include('form/regexp.php');
       //***************Country of birth********************** 
       if (isset($_POST["inputState"])) {
         $inputState = $_POST['inputState'];
-          if (empty($_POST["inputState"])) {
+          if (empty($inputState)) {
           $error['inputState'] = "*Champs requis";
         } else { 
-          $inputState = test_input($_POST["inputState"]);
+          $inputState = test_input($inputState);
           $inputState = filter_var($inputState, FILTER_SANITIZE_STRING); 
-            // if (!preg_match("$regexpState",$inputState)) {
+            // if (!preg_match($regexpState,$inputState)) {
             //   $error['inputState'] = "*Seules les lettres sont autorisées";
             // }
           } 
@@ -77,12 +77,12 @@ include('form/regexp.php');
      //***************Nationality********************** 
       if (isset($_POST["inputNationality"])) {
       $inputNationality = $_POST['inputNationality'];
-        if (empty($_POST["inputNationality"])) {
+        if (empty($inputNationality)) {
         $error['inputNationality'] = "*Champs requis";
         } else { 
-          $inputNationality = test_input($_POST["inputNationality"]);
+          $inputNationality = test_input($inputNationality);
           $inputNationality = filter_var($inputNationality, FILTER_SANITIZE_STRING); 
-            if (!preg_match("$regexpNationality",$inputNationality)) {
+            if (!preg_match($regexpNationality, $inputNationality)) {
             $error ['inputNationality'] = "*Seules les lettres sont autorisées";
             }
         } 
@@ -93,12 +93,12 @@ include('form/regexp.php');
       // ***************Adresse************************
       if (isset($_POST["inputAddress"])) {
       $inputAddress = $_POST['inputAddress'];
-        if (empty($_POST["inputAddress"])) {
+        if (empty($inputAddress)) {
         $error['inputAddress'] = "*Champs requis";
         } else { 
-          $inputAddress = test_input($_POST["inputAddress"]);
+          $inputAddress = test_input($inputAddress);
           $inputAddress = filter_var($inputAddress, FILTER_SANITIZE_STRING); 
-            if (!preg_match("$regexpAddress",$inputAddress)) {
+            if (!preg_match($regexpAddress, $inputAddress)) {
             $error['inputAddress'] = "*Seuls les lettres, les chiffres et les espaces sont autorisés";
             }
         }
@@ -109,13 +109,13 @@ include('form/regexp.php');
     //****************Code postal*****************
       if (isset($_POST["inputZip"])) {
       $inputZip = $_POST['inputZip'];
-        if (empty($_POST["inputZip"])) {
+        if (empty($inputZip)) {
         $error['inputZip'] = "*Champs requis";
           } else { 
-          $inputZip = test_input($_POST["inputZip"]);
+          $inputZip = test_input( $inputZip);
           $inputZip = filter_var($inputZip, FILTER_SANITIZE_NUMBER_INT); 
           
-            if (!preg_match("$regexpZIP",$inputZip)) {
+            if (!preg_match($regexpZIP, $inputZip)) {
             $error['inputZip'] = "Seuls les chiffres sont autorisés";
             }
           }
@@ -126,12 +126,12 @@ include('form/regexp.php');
     //**************Ville*******************
     if (isset($_POST["inputCity"])) {
     $inputCity = $_POST['inputCity'];
-      if (empty($_POST["inputCity"])) {
+      if (empty($inputCity)) {
         $error['inputCity'] = "*Champs requis";
         } else { 
-          $inputCity = test_input($_POST["inputCity"]);
+          $inputCity = test_input($inputCity);
           $inputCity = filter_var($inputCity, FILTER_SANITIZE_STRING);
-            if (!preg_match("$regexpCity",$inputCity)) {
+            if (!preg_match($regexpCity, $inputCity)) {
             $error['inputCity'] = "*Seules les lettres sont autorisées";
           }
         }
@@ -142,28 +142,30 @@ include('form/regexp.php');
     //*************Email**********************
     if (isset($_POST["inputEmail"])) {
     $inputEmail = $_POST['inputEmail'];
-      if (empty($_POST["inputEmail"])) {
+      if (empty($inputEmail)) {
         $error['inputEmail'] = "*Champs requis";
         } else {
-        $inputEmail = test_input($_POST["inputEmail"]);
-        if(!filter_var($inputEmail, FILTER_VALIDATE_EMAIL)){
-
-        }
+        $inputEmail = test_input($inputEmail);
         $inputEmail = filter_var($inputEmail, FILTER_SANITIZE_EMAIL);
+
+          if(!filter_var($inputEmail, FILTER_VALIDATE_EMAIL)) {
+          $error['inputEmail'] = "*Email non valide";
           }
-        } else {
+        
+        }
+    } else {
       $error['inputCity'] = '*Problème lors de l\'envoi du formulaire';  
     }
     
     //*****************Téléphone*******************
     if (isset($_POST["inputPhone"])) {
     $inputPhone = $_POST['inputPhone'];
-      if (empty($_POST["inputPhone"])) {
+      if (empty($inputPhone)) {
       $error['inputPhone'] = "*Champs requis";
         } else { 
-          $inputPhone = test_input($_POST["inputPhone"]);
+          $inputPhone = test_input($inputPhone);
           $inputPhone = filter_var($inputPhone, FILTER_SANITIZE_NUMBER_INT);
-            if (!preg_match("$regexpPhone",$inputPhone)) {
+            if (!preg_match($regexpPhone,$inputPhone)) {
             $error['inputPhone'] = "*Format du téléphone invalide";
             }
           }
@@ -174,12 +176,12 @@ include('form/regexp.php');
       //*************Pole Emploi****************
       if (isset($_POST["inputIDPoleEmploi"])) {
       $inputIDPoleEmploi = $_POST['inputIDPoleEmploi'];
-        if (empty($_POST["inputIDPoleEmploi"])) {
+        if (empty($inputIDPoleEmploi)) {
         $error['inputIDPoleEmploi'] = "*Champs requis";
           } else { 
-          $inputIDPoleEmploi = test_input($_POST["inputIDPoleEmploi"]);
+          $inputIDPoleEmploi = test_input($inputIDPoleEmploi);
           $inputIDPoleEmploi = filter_var($inputIDPoleEmploi, FILTER_SANITIZE_STRING);
-            if (!preg_match("$regexpIDPoleEmploi",$inputIDPoleEmploi)) {
+            if (!preg_match($regexpIDPoleEmploi, $inputIDPoleEmploi)) {
             $error['inputIDPoleEmploi'] = "Seuls les lettres et les chiffres sontautorisés";
             }
           } 
@@ -190,12 +192,12 @@ include('form/regexp.php');
     //*****************Diplome*************************
       if (isset($_POST["inputDiplome"])) {
         $inputDiplome = $_POST['inputDiplome'];
-        if (empty($_POST["inputDiplome"])) {
+        if (empty($inputDiplome)) {
         $error['inputDiplome'] = "*Champs requis";
           } else { 
-          $inputDiplome = test_input($_POST["inputDiplome"]);
+          $inputDiplome = test_input($inputDiplome);
           $inputDiplome = filter_var($inputDiplome, FILTER_SANITIZE_STRING);
-            // if (!preg_match("$regexpDiplome",$inputDiplome)) {
+            // if (!preg_match($regexpDiplome, $inputDiplome)) {
             // $error['inputDiplome'] = "Seuls les lettres et les chiffres sont autorisées";
             // }
           } 
@@ -206,12 +208,12 @@ include('form/regexp.php');
     //****************Badge****************************
       if (isset($_POST["inputBadge"])) {
       $inputBadge = $_POST['inputBadge'];
-        if (empty($_POST["inputBadge"])) {
+        if (empty($inputBadge)) {
         $error['inputBadge'] = "*Champs requis";
           } else { 
-          $inputBadge = test_input($_POST["inputBadge"]);
+          $inputBadge = test_input($inputBadge);
           $inputBadge = filter_var($inputBadge, FILTER_SANITIZE_NUMBER_INT);
-            if (!preg_match("$regexpBadge",$inputBadge)) {
+            if (!preg_match($regexpBadge,$inputBadge)) {
             $error['inputBadge'] = "Seuls les chiffres sont autorisées";
             }
           } 
@@ -222,12 +224,15 @@ include('form/regexp.php');
       //****************URL****************************
       if (isset($_POST["inputURL"])) {
         $inputURL = $_POST['inputURL'];
-          if (empty($_POST["inputURL"])) {
+          if (empty( $inputURL)) {
           $error['inputURL'] = "*Champs requis";
             } else { 
-            $inputURL = test_input($_POST["inputURL"]);
+
             $inputURL = filter_var($inputURL, FILTER_SANITIZE_URL);
-            $inputURL = filter_var($inputURL, FILTER_VALIDATE_URL);
+              
+              if (!filter_var($inputURL, FILTER_VALIDATE_URL)){
+                $error['inputURL'] = "URL invalide";
+              };
               
             } 
         } else {
@@ -237,10 +242,10 @@ include('form/regexp.php');
     //*****************SuperHero****************
       if (isset($_POST["inputSuperHero"])) {
       $inputSuperHero = $_POST['inputSuperHero'];
-        if (empty($_POST["inputSuperHero"])) {
+        if (empty($inputSuperHero)) {
         $error['inputSuperHero'] = "*Champs requis";
           } else { 
-          $inputSuperHero = test_input($_POST["inputSuperHero"]);
+          $inputSuperHero = test_input($inputSuperHero);
           $inputSuperHero = filter_var($inputSuperHero, FILTER_SANITIZE_STRING);
           }
       } else {
@@ -250,10 +255,10 @@ include('form/regexp.php');
     //******************Hacks********************
       if (isset($_POST['inputHack'])) {
         $inputHack = $_POST['inputHack'];
-        if (empty($_POST["inputHack"])) {
+        if (empty($inputHack)) {
           $error['inputHack'] = "*Champs requis";
             } else { 
-              $inputHack = test_input($_POST["inputHack"]);
+              $inputHack = test_input($inputHack);
               $inputHack = filter_var($inputHack, FILTER_SANITIZE_STRING);
           }
       } else {
@@ -263,10 +268,10 @@ include('form/regexp.php');
     //****************Expérience*******************
     if (isset($_POST['inputXP'])) {
       $inputXP = $_POST['inputXP'];
-        if (empty($_POST["inputXP"])) {
+        if (empty($inputXP)) {
           $error['inputXP'] = "*Champs requis";
         } else { 
-          $inputXP = test_input($_POST["inputXP"]);
+          $inputXP = test_input($inputXP);
           $inputXP = filter_var($inputXP, FILTER_SANITIZE_STRING);
         }
       } else {

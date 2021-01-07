@@ -2,25 +2,56 @@
 
 html, body{
     margin: 0;
-    
+}
+h1, h2{
+  font-weight: bold;
+}
+
+/* Animation h1 */
+h1 {
+  margin: auto;
+  font-size: 4vw;
+  /*it works best when uppercase ¯\_(ツ)_/¯ */
+}
+
+/* FORMULAIRE */
+
+.titleForm{
+  color: rgb(57, 115, 165) ;
 }
 
 input::invalid {
     border : 2px dashed red;
 }
-
 input::valid {
     border : 2px solid  green;
 }
 
-input {
- 
+select {
 }
 label {
     font-weight: bold;
     color:  rgb(57, 115, 165) ;
 }
 
+
+.containerForm{ 
+  background-color: blanchedalmond;
+  color:  rgb(26, 56, 82) ;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+}
+
+.colorBGForm{
+  background-color: rgb(26, 56, 82);
+}
+
+/* END FORMULAIRE */
+
+
+
+/* DATAS PAGE */
 .containerDatas{ 
     background-color: rgb(26, 56, 82);
     margin: 10%;
@@ -29,37 +60,13 @@ label {
     margin-top: 5%;
 }
 
-.containerForm{ 
-    background-color: blanchedalmond;
-    color:  rgb(26, 56, 82) ;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 5%;
-}
-
-h1, h2{
-    font-weight: bold;
- 
-}
-
-.titleForm{
-    color: rgb(57, 115, 165) ;
+.colorBGDatas{
+  background-color: blanchedalmond;
 }
 
 .resum{
     text-decoration: underline;
     margin-top: 1%;
-}
-
-select{
-    backg-op;
-}
-.colorBGForm{
-    background-color: rgb(26, 56, 82);
-}
-
-.colorBGDatas{
-    background-color: blanchedalmond;
 }
 
 span{
@@ -70,42 +77,27 @@ hr{
     border: aliceblue 1px solid;
     padding-left: 0;
 }
-
-
-/* .successPage{
-    background-image: url("https://i.pinimg.com/originals/63/40/43/634043cab80121612f5a674d2f1b5c84.gif");
-    background-color: blue;
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-} */
+/* END OF DATA PAGE */
 
 
 
-
-/* Animation h1 */
-
-
+/* SUCCESS PAGE */
 .successPage {
   background-color: rgb(255, 255, 255);
   background-image: url(https://i.pinimg.com/originals/5f/ee/8e/5fee8e4a9fea271529cfd8828dd990d5.gif);
-  background-repeat: initial;
+  background-repeat: repeat;
   background-position: center;
   background-size: 100%;
+  margin : 0;
 }
 
 
-h1 {
-  margin: auto;
-  font-size: 4vw;
-  /*it works best when uppercase ¯\_(ツ)_/¯ */
-}
 
 .successPage{
-    margin: auto;
+
     font-family: "Turret Road", sans-serif;
     font-size: 12vw;
+    display: inline;
     /*it works best when uppercase ¯\_(ツ)_/¯ */
   }
 

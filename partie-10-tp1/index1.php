@@ -6,8 +6,8 @@
     include('form/controller.php');
   } 
 
- // Si le champs est remplit et qu'il n'y a pas d'erreurs
-  if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)) {
+    // Si le champs est remplit et qu'il n'y a pas d'erreurs
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)) {
   // Afficher les données 
 
     include('structure/header.php');
