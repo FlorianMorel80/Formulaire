@@ -18,7 +18,8 @@
   <p class="text-light"><?= '<strong>Identifiant Pôle Emploi :</strong> ' . $inputIDPoleEmploi;?></p>
 
   <hr><h2 class="text-center text-light pt-2 pb-2">Vos compétences</h2> 
-  <p class="text-light"><?= '<strong>Votre lien Code Academy :</strong> ' . $inputURL;?></p>
+  <p class="text-light"><?= '<strong>Votre lien Code Academy :</strong> ' . $inputURL
+  ;?></p>
   <p class="text-light"><?= '<strong>Nombre de badge :</strong> ' . $inputBadge;?></p>
   <p class="text-light"><?= '<strong>Diplôme :</strong> ' . $inputDiplome;?></p>
 
@@ -34,7 +35,3 @@
     </a>
   </span>
 </p>
-  
-  
-  <!-- <?= include('form/form.php'); ?> -->
-

@@ -13,3 +13,6 @@
     <title>PHP - Partie 10 - TP 1 </title>
     
   </head>
+
+  <body class="<?=$bodyBG?>">
+    <div class="<?=$containerBG?>">
