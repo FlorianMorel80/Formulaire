@@ -1,6 +1,6 @@
 
 <div class="main">
-<h1 class="titleForm text-center  pt-2" id="glitch" data-text="VotreplusbeauFormulaire.com">VotreplusbeauFormulaire.com</h1></div>
+<h1 class="titleForm text-center  pt-2" id="glitch" data-text="VotrePlusBeauFormulaire.com">VotrePlusBeauFormulaire.com</h1></div>
 <h2 class="titleForm text-center  pt-2"> Vous aussi créez le formulaire de vos rêves</h2>
 
 

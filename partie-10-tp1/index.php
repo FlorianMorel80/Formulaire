@@ -8,12 +8,12 @@
 
   // Si le champs est remplit et qu'il n'y a pas d'erreurs
   if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)) {
-
+    //déclarer variable $bodyBG et containerBG -->
     $bodyBG = 'colorBGDatas'; 
     $containerBG = 'containerDatas'; 
     // Afficher les données 
     include('structure/header.php');
-    //déclarer variab le $colorBG -->
+    
     include('form/datas.php');
     
     //FICHIER HEADER

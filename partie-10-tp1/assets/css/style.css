@@ -88,7 +88,7 @@ hr{
   background-image: url(https://i.pinimg.com/originals/5f/ee/8e/5fee8e4a9fea271529cfd8828dd990d5.gif);
   background-repeat: repeat;
   background-position: center;
-  background-size: cover;
+  background-size: 110%;
   margin : 0;
 }
 
@@ -97,8 +97,10 @@ hr{
 .successPage{
 
     font-family: "Turret Road", sans-serif;
-    font-size: 12vw;
-    display: inline;
+    font-size: 24vh;
+
+    padding-left: 35%;
+    padding-top: 20%;
     /*it works best when uppercase ¯\_(ツ)_/¯ */
   }
 
