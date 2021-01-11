@@ -1,9 +1,10 @@
 
+
 <?php 
 // Si le formulaire est envoyé
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    include('form/controller.php');
+    include('controllers/user_controller.php');
   } 
 
   // Si le champs est remplit et qu'il n'y a pas d'erreurs
@@ -12,21 +13,21 @@
     $bodyBG = 'colorBGDatas'; 
     $containerBG = 'containerDatas'; 
     // Afficher les données 
-    include('structure/header.php');
+    include('views/templates/header.php');
     
-    include('form/datas.php');
+    include('views/templates/user_datas.php');
     
     //FICHIER HEADER
 
   } else {
     $bodyBG = 'colorBGForm';
     $containerBG = 'containerForm'; 
-    include('structure/header.php');
+    include('views/templates/header.php');
     // Afficher le formulaire et/ou avec les erreurs  
-    include('form/form.php');
+    include('views/templates/user_form.php');
   }
 
     //FICHIER FOOTER -->
 
 
-include('structure/footer.php'); ?> 
+include('views/templates/footer.php'); ?> 

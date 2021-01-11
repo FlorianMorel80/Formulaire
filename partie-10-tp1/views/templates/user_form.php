@@ -10,12 +10,13 @@
       <!-- NAME -->
       <div class="form-inline col-md-6">
         <label for="inputName">Nom</label>
+        <!-- Dans la value, je test si l'input name est remplit je l'affiche sinon je ne mets rien -->
         <input 
           type="text"
           class="form-control"
-          value="<?= isset($inputName) ? $inputName : '' ?>"
+          value="<?= $inputName ?? '' ?>"
           name="inputName"
-          pattern="[A-Za-z-éèêëàâäôöûüùç'. ]+"
+          pattern="[A-Za-z-éèêëàâäôöûüùç' ]+"
           title ="Le champs ne doit comporter que des lettres et des espaces"
           placeholder="Votre nom"
           required>
@@ -28,7 +29,7 @@
         <input
           type="text"
           class="form-control"
-          value="<?= isset($inputFirstName) ? $inputFirstName : '' ?>"
+          value="<?= $inputFirstName ?? '' ?>"
           name="inputFirstName"
           pattern="[A-Za-z-éèêëàâäôöûüùç'. ]*"
           title ="Le champs ne doit comporter que des lettres et des espaces"
@@ -46,12 +47,12 @@
         <input
           type="date"
           class="form-control"
-          value="<?= isset($_POST['inputDateOfBirth']) ? $_POST['inputDateOfBirth'] : '' ?>"
+          value="<?= $inputDateOfBirth ?? '' ?>"
           name="inputDateOfBirth"
           pattern="([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}"
           minlength="8" maxlength="8"
           title ="Le champs doit être remplit sous le format JJ/MM/AAAA"
-          placeholder="01/01/1994"
+          placeholder="Au format JJ/MM/AAAA"
           required>
         <p class="text-danger"><?= $error['inputDateOfBirth'] ?? ''; ?></p>
       </div> 
@@ -277,7 +278,7 @@
         <input
           type="text"
           class="form-control"
-          value="<?= isset($inputNationality) ? $inputNationality : '' ?>"
+          value="<?= $inputNationality ?? '' ?>"
           name="inputNationality"
           pattern="([A-Za-z éèêëàâäôöûüç.-])+"
           title ="Le champs ne doit comporter que des lettres et des espaces"
@@ -295,7 +296,7 @@
         <input
           type="text"
           class="form-control"
-          value="<?= isset($inputAddress) ? $inputAddress : '' ?>"
+          value="<?= $inputAddress ?? '' ?>"
           name="inputAddress"
           pattern="[0-9]{1,6}[A-Za-z0-9-éèêëàâäôöûüç .,-]+"
           title ="Le champs ne doit comporter que des lettres, des chiffres et des espaces"
@@ -312,7 +313,7 @@
           pattern="(([0-8][0-9])|(9[0-5]))[0-9]{3}"
           title="Ne doit contenir que des chiffres"
           class="form-control"
-          value="<?= isset($inputZip) ? $inputZip : '' ?>"
+          value="<?= $inputZip ?? '' ?>"
           name="inputZip"
           required>
         <p class="text-danger"><?= $error['inputZip'] ?? ''; ?></p>
@@ -324,7 +325,7 @@
         <input 
           type="text" 
           class="form-control" 
-          value="<?= isset($inputCity) ? $inputCity : '' ?>" 
+          value="<?= $inputCity ?? '' ?>" 
           name="inputCity"  
           pattern="([A-Za-z éèêëàâäôöûüç .-])+" 
           title ="Le champs ne doit comporter que des lettres"
@@ -338,12 +339,12 @@
       <div class="form-group col-md-3">
         <label for="inputPhone">Téléphone</label>
         <input 
-          type="text" 
+          type="tel" 
           class="form-control" 
           maxlength="15" 
-          value="<?= isset($inputPhone) ? $inputPhone : '' ?>" 
+          value="<?= $inputPhone ?? '' ?>" 
           name="inputPhone" 
-          pattern="(\+[0-9]{1,3}[0-9]{8,12})|[0-9]{8,15}" 
+          pattern="([+0-9]{1,3}[0-9]{8,12})|[0-9]{8,15}" 
           title ="Le champs ne doit comporter que des chiffres"
           required>
         <p class="text-danger"><?= $error['inputPhone'] ?? ''; ?></p>
@@ -355,9 +356,9 @@
         <input 
           type="email" 
           class="form-control" 
-          value="<?= isset($inputEmail) ? $inputEmail : '' ?>" 
+          value="<?= $inputEmail ?? '' ?>" 
           name="inputEmail"
-          pattern="[A-Za-z0-9._!#$%&’`*?^+{|}~-]+@[a-z0-9]+\.[a-z]{2,6}"
+          pattern="[a-z0-9._!#$%&’`*?^+{|}~-]+@[a-z0-9]+\.[a-z]{2,6}"
           title="Le format de l'email est invalide"
           placeholder="jojo@hotmail.fr"
           required>
@@ -371,10 +372,10 @@
             type="text"
             class="form-control"
             maxlength="8"
-            value="<?= isset($inputIDPoleEmploi) ? $inputIDPoleEmploi : '' ?>"
+            value="<?= $inputIDPoleEmploi ?? '' ?>"
             name="inputIDPoleEmploi"
             pattern="[0-9]{7}[A-Z]{1}"
-            title ="Doit contenir 7 chiffres et 1 lettre"
+            title ="Doit contenir 7 chiffres et 1 lettre majuscule"
             required>
           <p class="text-danger"><?= $error['inputIDPoleEmploi'] ?? ''; ?></p>
         </div>
@@ -400,9 +401,10 @@
             type="number"
             maxlength="3"
             class="form-control"
-            value="<?= isset($inputBadge) ? $inputBadge : '' ?>"
+            value="<?= $inputBadge ?? '' ?>"
             name="inputBadge"
-            min="1"
+            min="0"
+            max="199"
             pattern="[0-9]{0,2}|[1]?[0-9]{2}"
             title ="Entre 0 et 199"
             required>
@@ -414,10 +416,11 @@
           <input
             type="text" 
             class="form-control"
-            value="<?= isset($inputURL) ? $inputURL : '' ?>"
+            value="<?= $inputURL ??'' ?>"
             name="inputURL"
             pattern="(?:http(s)?://)?[\w.-]+(?:.[\w.-]+)+[\w-._~:/?#[]@!$&'()*+,;=.]+"
             title ="URL invalide"
+            placeholder ="http://xxxxx ou https://xxxxx"
             required>
           <p class="text-danger"><?= $error['inputURL'] ?? ''; ?></p>
         </div>
@@ -428,11 +431,10 @@
           <textarea 
             type="text"
             rows="6"
-            class="form-control"
-            value="<?= isset($inputSuperHero) ? $inputSuperHero : '' ?>"
+            class="form-control",
+            value="<?= $inputSuperHero ?? '' ?>"
             name="inputSuperHero"
-            required>
-          </textarea>
+            required></textarea>
           <p class="text-danger"><?= $error['inputSuperHero'] ?? ''; ?></p>
         </div>
 
@@ -442,9 +444,8 @@
             type="text"
             rows="6"
             class="form-control"
-            value="<?= isset($inputHack) ? $inputHack : '' ?>"
-            name="inputHack"required>
-          </textarea>
+            value="<?= $inputHack ??'' ?>"
+            name="inputHack"required></textarea>
           <p class="text-danger"><?= $error['inputHack'] ?? ''; ?></p>
         </div>
         <!--  -->
@@ -455,7 +456,7 @@
           type="text"
           rows="6"
           class="form-control"
-          value="<?= isset($inputXP) ? $inputXP : '' ?>"
+          value="<?= $inputXP ?? '' ?>"
           name="inputXP"
           required></textarea>
         

@@ -1,7 +1,8 @@
 <?php 
-
+// Le fichier regexp est composé de constante 
+include('views/form/regexp.php');
 $error = array(); 
-include('form/regexp.php');
+
 // ***************InputName**********************
       // Si le champs existe
     if (isset($_POST['inputName'])) {
@@ -13,10 +14,10 @@ include('form/regexp.php');
       } else {
 
           // Si il n'est pas vide, alors je nettoie la variable 
-          $inputName = trim(filter_var($inputName, FILTER_SANITIZE_STRING));
+          $inputName = trim(filter_var($inputName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
 
           // Verifier : Si le champs ne correspond pas à la REGEX
-          if (!preg_match($regexpName,$inputName)) {
+          if (!preg_match(REGEXP_STR_NO_NUMBER,$inputName)) {
               $error['inputName'] = '*Seuls les lettres et les espaces sont autorisés';
           } 
       }
@@ -31,9 +32,9 @@ include('form/regexp.php');
         $error['inputFirstName'] = '*Champs requis';
       } else {
         // Si il n'est pas vide, alors je nettoie la variable 
-        $inputFirstName = trim(filter_var($inputFirstName, FILTER_SANITIZE_STRING));
+        $inputFirstName = trim(filter_input(INPUT_POST, 'inputFirstName', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
         // Verifier : Si le champs ne correspond pas à la REGEX
-        if (!preg_match($regexpFirstName,$inputFirstName)) {
+        if (!preg_match(REGEXP_STR_NO_NUMBER,$inputFirstName)) {
             $error['inputFirstName'] = '*Seuls les lettres et les espaces sont autorisés';
         } 
     }
@@ -47,9 +48,12 @@ include('form/regexp.php');
         if (empty($inputDateOfBirth)) {
           $error['inputDateOfBirth'] = '*Champs requis';
         } else {
-          $inputDateOfBirth = trim(filter_var($inputDateOfBirth, FILTER_SANITIZE_STRING)); 
+          $inputDateOfBirth = trim(filter_input(INPUT_POST, 'inputDateOfBirth', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES)); 
           $timestamp = strtotime($inputDateOfBirth);
           $inputDateOfBirth = date('d-m-Y', $timestamp);
+            // if (!preg_match(REGEXP_NUMBER_DATE_OF_BIRTH, $inputDateOfBirth)) {
+            // $error['inputDateOfBirth'] = '*Seuls les chiffres sont autorisés';
+            // } 
         }
       } else {
         $error['inputDateOfBirth'] = '*Problème lors de l\'envoi du formulaire';  
@@ -61,10 +65,8 @@ include('form/regexp.php');
           if (empty($inputState)) {
           $error['inputState'] = "*Champs requis";
         } else { 
-          $inputState = trim(filter_var($inputState, FILTER_SANITIZE_STRING)); 
-            // if (!preg_match($regexpState,$inputState)) {
-            //   $error['inputState'] = "*Seules les lettres sont autorisées";
-            // }
+          $inputState = trim(filter_input(INPUT_POST, 'inputState', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES)); 
+            
           } 
         } else {
           $error['inputState'] = '*Problème lors de l\'envoi du formulaire';  
@@ -76,8 +78,8 @@ include('form/regexp.php');
         if (empty($inputNationality)) {
         $error['inputNationality'] = "*Champs requis";
         } else { 
-          $inputNationality = trim(filter_var($inputNationality, FILTER_SANITIZE_STRING)); 
-            if (!preg_match($regexpNationality, $inputNationality)) {
+          $inputNationality = trim(filter_input(INPUT_POST,'inputNationality', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES)); 
+            if (!preg_match(REGEXP_STR_NO_NUMBER , $inputNationality)) {
             $error ['inputNationality'] = "*Seules les lettres sont autorisées";
             }
         } 
@@ -91,8 +93,8 @@ include('form/regexp.php');
         if (empty($inputAddress)) {
         $error['inputAddress'] = "*Champs requis";
         } else { 
-          $inputAddress = trim(filter_var($inputAddress, FILTER_SANITIZE_STRING)); 
-            if (!preg_match($regexpAddress, $inputAddress)) {
+          $inputAddress = trim(filter_var($inputAddress, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES)); 
+            if (!preg_match(REGEXP_STR_NUMBER_ADDRESS, $inputAddress)) {
             $error['inputAddress'] = "*Seuls les lettres, les chiffres et les espaces sont autorisés";
             }
         }
@@ -108,7 +110,7 @@ include('form/regexp.php');
           } else { 
           $inputZip = trim(filter_var($inputZip, FILTER_SANITIZE_NUMBER_INT)); 
           
-            if (!preg_match($regexpZIP, $inputZip)) {
+            if (!preg_match(REGEXP_ZIP, $inputZip)) {
             $error['inputZip'] = "Seuls les chiffres sont autorisés";
             }
           }
@@ -122,8 +124,8 @@ include('form/regexp.php');
       if (empty($inputCity)) {
         $error['inputCity'] = "*Champs requis";
         } else { 
-          $inputCity = trim(filter_var($inputCity, FILTER_SANITIZE_STRING));
-            if (!preg_match($regexpCity, $inputCity)) {
+          $inputCity = trim(filter_input(INPUT_POST, 'inputCity', FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
+            if (!preg_match(REGEXP_STR_NO_NUMBER, $inputCity)) {
             $error['inputCity'] = "*Seules les lettres sont autorisées";
           }
         }
@@ -137,7 +139,7 @@ include('form/regexp.php');
       if (empty($inputEmail)) {
         $error['inputEmail'] = "*Champs requis";
         } else {
-        $inputEmail = trim(filter_var($inputEmail, FILTER_SANITIZE_EMAIL));
+        $inputEmail = trim(filter_input(INPUT_POST, 'inputEmail', FILTER_SANITIZE_EMAIL));
 
           if(!filter_var($inputEmail, FILTER_VALIDATE_EMAIL)) {
           $error['inputEmail'] = "*Email non valide";
@@ -145,7 +147,7 @@ include('form/regexp.php');
         
         }
     } else {
-      $error['inputCity'] = '*Problème lors de l\'envoi du formulaire';  
+      $error['inputCity'] = '*Problème lors de l\'envoi du formulaire';
     }
     
     //*****************Téléphone*******************
@@ -154,8 +156,8 @@ include('form/regexp.php');
       if (empty($inputPhone)) {
       $error['inputPhone'] = "*Champs requis";
         } else { 
-          $inputPhone = trim(filter_var($inputPhone, FILTER_SANITIZE_NUMBER_INT));
-            if (!preg_match($regexpPhone,$inputPhone)) {
+          $inputPhone = trim(filter_input(INPUT_POST, 'inputPhone', FILTER_SANITIZE_STRING , FILTER_FLAG_NO_ENCODE_QUOTES));
+            if (!preg_match(REGEXP_PHONE_NUMBER, $inputPhone)) {
             $error['inputPhone'] = "*Format du téléphone invalide";
             }
           }
@@ -169,9 +171,9 @@ include('form/regexp.php');
         if (empty($inputIDPoleEmploi)) {
         $error['inputIDPoleEmploi'] = "*Champs requis";
           } else { 
-          $inputIDPoleEmploi = trim(filter_var($inputIDPoleEmploi, FILTER_SANITIZE_STRING));
-            if (!preg_match($regexpIDPoleEmploi, $inputIDPoleEmploi)) {
-            $error['inputIDPoleEmploi'] = "Doit contenir 7 chiffres et 1 lettre";
+          $inputIDPoleEmploi = trim(filter_var($inputIDPoleEmploi, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
+            if (!preg_match(REGEXP_ID_POLE_EMPLOI, $inputIDPoleEmploi)) {
+            $error['inputIDPoleEmploi'] = "Doit contenir 7 chiffres et 1 lettre majuscule";
             }
           } 
       } else {
@@ -184,10 +186,7 @@ include('form/regexp.php');
         if (empty($inputDiplome)) {
         $error['inputDiplome'] = "*Champs requis";
           } else { 
-          $inputDiplome = trim(filter_var($inputDiplome, FILTER_SANITIZE_STRING));
-            // if (!preg_match($regexpDiplome, $inputDiplome)) {
-            // $error['inputDiplome'] = "Seuls les lettres et les chiffres sont autorisées";
-            // }
+          $inputDiplome = trim(filter_var($inputDiplome, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
           } 
       } else {
         $error['inputDiplome'] = '*Problème lors de l\'envoi du formulaire';  
@@ -200,8 +199,9 @@ include('form/regexp.php');
           $inputBadge = 0;
         $error['inputBadge'] = "*Champs requis";
           } else { 
-          $inputBadge = trim(filter_var($inputBadge, FILTER_VALIDATE_INT));
-            if (!preg_match($regexpBadge,$inputBadge)) {
+          $inputBadge = trim(filter_var($inputBadge, FILTER_SANITIZE_NUMBER_INT));
+          $inputBadge = filter_input(INPUT_POST, 'inputBadge', FILTER_VALIDATE_INT);
+            if (!preg_match(REGEXP_NUMBER_BADGE ,$inputBadge)) {
             $error['inputBadge'] = "Seuls les chiffres sont autorisées";
             }
           } 
@@ -219,7 +219,7 @@ include('form/regexp.php');
             $inputURL = trim(filter_var($inputURL, FILTER_SANITIZE_URL));
               
               if (!filter_var($inputURL, FILTER_VALIDATE_URL)){
-                $error['inputURL'] = "URL invalide";
+                $error['inputURL'] = "URL invalide (http://xxxxx ou https://xxxxx)";
               };
               
             } 
@@ -233,7 +233,7 @@ include('form/regexp.php');
         if (empty($inputSuperHero)) {
         $error['inputSuperHero'] = "*Champs requis";
           } else { 
-            $inputSuperHero = trim(filter_var($inputSuperHero, FILTER_SANITIZE_STRING));
+            $inputSuperHero = trim(filter_var($inputSuperHero, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
           }
       } else {
         $error['inputSuperHero'] = '*Problème lors de l\'envoi du formulaire';  
@@ -245,7 +245,7 @@ include('form/regexp.php');
         if (empty($inputHack)) {
           $error['inputHack'] = "*Champs requis";
             } else { 
-              $inputHack = trim(filter_var($inputHack, FILTER_SANITIZE_STRING));
+              $inputHack = trim(filter_var($inputHack, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
           }
       } else {
         $error['inputHack'] = '*Problème lors de l\'envoi du formulaire';  
@@ -257,7 +257,7 @@ include('form/regexp.php');
         if (empty($inputXP)) {
           $error['inputXP'] = "*Champs requis";
         } else { 
-          $inputXP = trim(filter_var($inputXP, FILTER_SANITIZE_STRING));
+          $inputXP = trim(filter_var($inputXP, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
         }
       } else {
         $error['inputXP'] = '*Problème lors de l\'envoi du formulaire';
