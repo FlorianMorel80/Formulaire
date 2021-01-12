@@ -23,4 +23,7 @@ define('REGEXP_ID_POLE_EMPLOI', "/^[0-9]{7}[A-Z]{1}$/");
 // Badge (1 à 199)
 define('REGEXP_NUMBER_BADGE', "/^[0-9]{0,2}|[1]?[0-9]{2}$/");
 
+// Age
+define ('REGAGE', '/^[0-9]{2,3}$/');
+
 ?>

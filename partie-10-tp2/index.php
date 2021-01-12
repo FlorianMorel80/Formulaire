@@ -10,16 +10,14 @@
 <body>
 
 <?php 
+        include ('views/form.php');
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        include 'controller.php';
+        include ('controllers/user_controller.php');
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && empty($error)) {
-        include 'form.php';
-        include 'datas.php';
-    } else {
-        include 'form.php';
-    }
+        include ('views/datas.php');
+    } 
 ?>
     
 </body>
