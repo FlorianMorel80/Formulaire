@@ -6,16 +6,17 @@
     $portrait3 = array('name'=>'Pierre', 'firstname'=>'Corneille', 'description' => 'Pierre Corneille, aussi appelé « le Grand Corneille » ou « Corneille l\'aîné », né le 6 juin 1606 à Rouen et mort le 1ᵉʳ octobre 1684 à Paris, est un dramaturge et poète français du XVIIᵉ siècle.', 'portrait'=>'http://upload.wikimedia.org/wikipedia/commons/2/2a/Pierre_Corneille_2.jpg');
 
     $portrait4 = array('name'=>'Jean', 'firstname'=>'Racine', 'description' => 'Jean Racine est un dramaturge et poète français. Issu d\'une famille de petits notables de la Ferté-Milon et tôt orphelin, Racine reçoit auprès des « Solitaires » de Port-Royal une éducation littéraire et religieuse rare.', 'portrait'=>'http://upload.wikimedia.org/wikipedia/commons/d/d5/Jean_racine.jpg');
+    
 
     function historicWriter($array) {
         $writer = '<div class="card" style="width: 26rem;">
-        <img src="'.$array['portrait'].'" class="card-img-top" alt="Portrait de '.$array['name'].' '.$array['firstname'].'">
-        <div class="card-body">
-            <h5 class="card-title">'.$array['name'].' '.$array['firstname'].'</h5>
-            <p>' . $array['description'] . '</p>
-        </div>
-    </div>';
-      return $writer;
+                    <img src="'.$array['portrait'].'" class="card-img-top" alt="Portrait de '.$array['name'].' '.$array['firstname'].'">
+                        <div class="card-body">
+                        <h5 class="card-title">'.$array['name'].' '.$array['firstname'].'</h5>
+                            <p>' . $array['description'] . '</p>
+                        </div>
+                    </div>';
+        return $writer;
     }
 ?>
 
